@@ -1,0 +1,79 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  background-color: #242424;
+  color: black;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  place-items: center;
+  background: #cbb6b6;
+}
+form {
+  background: white;
+  width: 370px;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.form-container {
+  padding: 10px;
+}
+
+button {
+  padding: 15px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+input {
+  height: 42px;
+  width: 100%;
+  background: transparent;
+  outline: rgb(63, 60, 60);
+  color: black;
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+.inputField span {
+  display: none;
+}
+
+.inputField input:invalid[focused="true"] ~ span {
+  display: block;
+  color: red;
+  font-size: 13px;
+  font-style: italic;
+}
+.navlink {
+  text-align: center;
+}
+.navlink a {
+  color: blue;
+  font-size: 13px;
+}
