@@ -47,17 +47,28 @@ const LogIn = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    let loadingToastId;
     try {
+      // Show loading notification
+      loadingToastId = toast.loading("Logging in...");
+
       // Sign in the user with email and password
       await signInWithEmailAndPassword(auth, inputVal.email, inputVal.password);
 
+      // Close loading notification
+      toast.dismiss(loadingToastId);
+
+      // Navigate to the desired page after successful login
       navigate("/displaycontent");
+
       // Display success notification
-      return toast.success("loggedIn success");
+      toast.success("Logged in successfully");
     } catch (error) {
+      // Close loading notification
+      toast.dismiss(loadingToastId);
+
       // Display error notification
-      return toast.error(error.message);
+      toast.error(error.message);
     }
   };
 

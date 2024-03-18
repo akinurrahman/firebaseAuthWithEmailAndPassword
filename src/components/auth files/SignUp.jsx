@@ -63,15 +63,23 @@ const SignUp = () => {
     },
   ];
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let loadingToastId; // Declare loadingToastId outside try block
+
     try {
+      // Show loading notification
+      loadingToastId = toast.loading("Creating account...");
+
       // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         inputVal.email,
         inputVal.password
       );
+
       // Get the user from the userCredential
       const user = userCredential.user;
 
@@ -80,13 +88,22 @@ const SignUp = () => {
         displayName: inputVal.userName,
       });
 
+      // Close loading notification
+      toast.dismiss(loadingToastId);
+
+      // Redirect to login page after account creation
       navigate("/login");
 
       // Display success notification
-      return toast.success("Account created successfully, LogIn to continue");
+      toast.success("Account created successfully. Log in to continue");
     } catch (error) {
+      // Close loading notification if it was shown
+      if (loadingToastId) {
+        toast.dismiss(loadingToastId);
+      }
+
       // Display error notification
-      return toast.error(error.message);
+      toast.error(error.message);
     }
   };
 
